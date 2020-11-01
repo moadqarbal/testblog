@@ -12,5 +12,10 @@ class SettingSeeder extends Seeder
     public function run()
     {
         //
+        \App\Setting::create([
+            'site_name'=>'Moad',
+            'contact_email'=>'mouad@gmail.com',
+            'address'=>'address example here'
+        ]);
     }
 }
