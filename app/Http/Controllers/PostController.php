@@ -15,7 +15,12 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = Post::latest()->get();
+        $posts = Post::latest()->with('user')->get();
+        // for readble date
+        foreach($posts as $post){
+            $post->setAttribute('added_at',$post->created_at->diffForHumans());
+            $post->setAttribute('comments_count',$post->comments->count());
+        }
         return response()->json($posts);
     }
 
