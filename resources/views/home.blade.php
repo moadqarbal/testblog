@@ -3,7 +3,8 @@
 @section('content')
   <!-- Page Content -->
   <div class="container intro-container">
-
+    <global-home></global-home>
+    {{--
     <div class="row">
       
       <!-- Blog Entries Column -->
@@ -92,9 +93,9 @@
         </div>
 
       
-      </div>
+      </div> 
 
-    </div>
+    </div>--}}
     <!-- /.row -->
 
   </div>
