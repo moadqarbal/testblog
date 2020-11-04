@@ -78,6 +78,7 @@ class PostController extends Controller
                 'added_at'=>$comment->created_at->diffForHumans()
             ]);
         }
+        return $new_comments;
    }
 
     /**
