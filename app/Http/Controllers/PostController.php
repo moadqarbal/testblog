@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -113,5 +114,17 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function categoryPosts($slug)
+    {
+        $category = Category::whereSlug($slug)->first(); // where('slug').$slug;
+        $posts = Post::whereCategoryId($category->id)->with('user')->get();  // get all post for clicked category
+        // formatting for date and comment 
+        foreach($posts as $post){
+            $post->setAttribute('added_at',$post->created_at->diffForHumans());
+            $post->setAttribute('comments_count',$post->comments->count());
+        }
+        return response()->json($posts);
     }
 }
