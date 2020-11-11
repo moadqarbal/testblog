@@ -131,12 +131,16 @@ class PostController extends Controller
     public function searchposts($query)
     {
         
-        $posts = Post::where('title' , 'like' , '%'.$query.'%')->with('user')->get();
+        $posts = Post::where('title' , 'like' , '%'.$query.'%')->with('user');
+        //get all rows //count
+        $nbposts = count($posts->get());
         // formatting for date and comment 
-        foreach($posts as $post){
+        foreach($posts->get() as $post){
             $post->setAttribute('added_at',$post->created_at->diffForHumans());
             $post->setAttribute('comments_count',$post->comments->count());
         }
+        // fetch all search posts in one page
+        $posts = $posts->paginate(intval($nbposts));
         return response()->json($posts);
     }
 }
