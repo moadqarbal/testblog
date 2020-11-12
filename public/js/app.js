@@ -2123,7 +2123,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      password: '',
+      email: ''
+    };
+  },
+  computed: {
+    emailError: function emailError() {
+      return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email) && this.email.length > 0;
+    },
+    passwordError: function passwordError() {
+      return this.password.length > 0 && this.password.length < 7;
+    },
+    isValidForm: function isValidForm() {
+      return this.password.length > 5 && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email);
+    }
+  },
+  methods: {
+    submitLogin: function submitLogin() {
+      console.log("submitted");
+    }
+  }
+});
 
 /***/ }),
 
@@ -2421,6 +2454,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     isValidForm: function isValidForm() {
       return this.firstname.length > 4 && this.lastname.length > 4 && this.password.length > 5 && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email);
+    }
+  },
+  methods: {
+    submitForm: function submitForm() {
+      console.log("submitted");
     }
   }
 });
@@ -38857,134 +38895,208 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "login-modal",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "exampleModalLabel",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "login-form" }, [
+              _c(
+                "form",
+                {
+                  attrs: {
+                    action: "/examples/actions/confirmation.php",
+                    method: "post"
+                  }
+                },
+                [
+                  _c("h2", { staticClass: "text-center" }, [_vm._v("Log in")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.email,
+                          expression: "email"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "email",
+                        placeholder: "Email",
+                        nonvalidate: ""
+                      },
+                      domProps: { value: _vm.email },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.email = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.emailError,
+                            expression: "emailError"
+                          }
+                        ],
+                        staticClass: "text-danger"
+                      },
+                      [
+                        _vm._v(
+                          "\n                     email not valid\n                 "
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.password,
+                          expression: "password"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "password",
+                        placeholder: "Password",
+                        nonvalidate: ""
+                      },
+                      domProps: { value: _vm.password },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.password = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.passwordError,
+                            expression: "passwordError"
+                          }
+                        ],
+                        staticClass: "text-danger"
+                      },
+                      [
+                        _vm._v(
+                          "\n                     password is too short\n                 "
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary btn-block",
+                        attrs: { type: "submit", disabled: !_vm.isValidForm },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.submitLogin($event)
+                          }
+                        }
+                      },
+                      [_vm._v("Log in")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(2)
+            ])
+          ])
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "login-modal",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "exampleModalLabel",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "modal-dialog", attrs: { role: "document" } },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "h5",
-                  {
-                    staticClass: "modal-title",
-                    attrs: { id: "exampleModalLabel" }
-                  },
-                  [_vm._v("Login")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "close",
-                    attrs: {
-                      type: "button",
-                      "data-dismiss": "modal",
-                      "aria-label": "Close"
-                    }
-                  },
-                  [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×")
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("div", { staticClass: "login-form" }, [
-                  _c(
-                    "form",
-                    {
-                      attrs: {
-                        action: "/examples/actions/confirmation.php",
-                        method: "post"
-                      }
-                    },
-                    [
-                      _c("h2", { staticClass: "text-center" }, [
-                        _vm._v("Log in")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Username",
-                            required: "required"
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "password",
-                            placeholder: "Password",
-                            required: "required"
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary btn-block",
-                            attrs: { type: "submit" }
-                          },
-                          [_vm._v("Log in")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "clearfix" }, [
-                        _c(
-                          "a",
-                          { staticClass: "pull-right", attrs: { href: "#" } },
-                          [_vm._v("Forgot Password?")]
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-center" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "switch-toregister-modal",
-                        attrs: { href: "#" }
-                      },
-                      [_vm._v("Create an Account")]
-                    )
-                  ])
-                ])
-              ])
-            ])
-          ]
-        )
-      ]
-    )
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Login")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "clearfix" }, [
+      _c("a", { staticClass: "pull-right", attrs: { href: "#" } }, [
+        _vm._v("Forgot Password?")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "text-center" }, [
+      _c(
+        "a",
+        { staticClass: "switch-toregister-modal", attrs: { href: "#" } },
+        [_vm._v("Create an Account")]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -39510,7 +39622,13 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn btn-primary btn-block",
-                        attrs: { type: "submit", disabled: !_vm.isValidForm }
+                        attrs: { type: "submit", disabled: !_vm.isValidForm },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.submitForm($event)
+                          }
+                        }
                       },
                       [_vm._v("Create Account")]
                     )
